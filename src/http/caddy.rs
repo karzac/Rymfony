@@ -9,6 +9,7 @@ use std::process::Stdio;
 use std::os::unix::fs::PermissionsExt;
 
 #[cfg(not(target_os="windows"))]
+#[allow(unused_imports)]
 use runas::Command as SudoCommand;
 
 const CADDY_VERSION_REGEX: &'static str = r"^v(2\.\d+\.\d+) ";
