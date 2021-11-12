@@ -58,7 +58,15 @@ pub(crate) fn new_symfony(args: &ArgMatches) {
 
     info!("Using directory {}", &path.to_str().unwrap());
 
-    let composer_path = which::which("composer").unwrap();
+    let composer_path = which::which("composer");
+
+    let composer_path = match composer_path {
+        Ok(path) => path,
+        Err(_) => {
+            error!("Composer not found. Please make sure it is installed.");
+            return;
+        }
+    };
 
     info!("Composer detected at {}", &composer_path.to_str().unwrap());
 
